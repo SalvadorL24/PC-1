@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUNKO TOYS STORE</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #87CEEB, #FFDAB9, #87CEEB);
+            color: #333;
+        }
+
+        
+        .navbar {
+            background-color: rgba(51, 51, 51, 0.9);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .navbar-menu {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-menu li {
+            margin-left: 20px;
+        }
+
+        .navbar-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .navbar-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .navbar-toggle-icon {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+        }
+
+        .main-header {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-header img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .main-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #FF6347; 
+        }
+
+        .main-header p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+
+        .search-bar {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar input[type="text"] {
+            width: 80%;
+            max-width: 400px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: #FF6347; 
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #FF4500; 
+        }
+
+        
+        .main-content {
+            padding: 20px;
+        }
+
+        .main-content section {
+            margin-bottom: 40px;
+        }
+
+        .main-content h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #FF4500; 
+        }
+
+        .main-content p {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        
+        .product-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); 
+    gap: 20px;
+    padding: 20px;
+}
+
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            color: #2E8B57; 
+        }
+
+        .product-card p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .product-card button {
+            background-color: #FF6347; 
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .product-card button:hover {
+            background-color: #FF4500; 
+        }
+
+        /* Carrito */
+        .carrito {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .carrito h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #FF4500; 
+        }
+
+        .carrito ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .carrito li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .carrito li:last-child {
+            border-bottom: none;
+        }
+
+        .carrito button {
+            background-color: #4682B4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .carrito button:hover {
+            background-color: #5F9EA0; 
+        }
+
+        
+        .reserva-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); 
+    gap: 20px;
+    padding: 20px;
+}
+
+        .reserva-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .reserva-card:hover {
+            transform: scale(1.05);
+        }
+
+        .reserva-card img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .reserva-card h3 {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            color: #4682B4; 
+        }
+
+        .reserva-card p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        
+        .form-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); 
+    gap: 20px;
+    padding: 20px;
+}
+
+
+        .form-section {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2E8B57; 
+        }
+
+        .form-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #4682B4; 
+        }
+
+        .form-section input,
+        .form-section textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-section textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .form-section button {
+            background-color: #4682B4; 
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .form-section button:hover {
+            background-color: #5F9EA0; 
+        }
+
+        /* Footer */
+        .footer {
+            background-color: rgba(51, 51, 51, 0.9);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-left: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        
+@media (min-width: 768px) {
+    
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    
+    .reserva-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    
+    .form-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    
+    .navbar-menu {
+        display: flex;
+    }
+
+    .navbar-toggle {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    
+    .navbar-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbar-menu.active {
+        display: flex;
+    }
+
+    .navbar-toggle {
+        display: flex;
+    }
+
+    
+    .footer-container {
+        flex-direction: column;
+    }
+
+    .footer-links {
+        margin-top: 10px;
+    }
+}
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">Pop TOYS </a>
+            <button class="navbar-toggle" aria-label="Abrir menú" onclick="toggleMenu()">
+                <span class="navbar-toggle-icon"></span>
+                <span class="navbar-toggle-icon"></span>
+                <span class="navbar-toggle-icon"></span>
+            </button>
+            <ul class="navbar-menu" id="navbarMenu">
+                <li><a href="#buscar">Buscar</a></li>
+                <li><a href="#consultas">Consultas</a></li>
+                <li><a href="#carrito">Carrito</a></li>
+                <li><a href="#reservas">Reservas</a></li>
+            </ul>
+        </div>
+    </nav>
+    <header class="main-header">
+        <img src="logo-250.png" alt="Pop toys">
+        <h1>Bienvenido a Funko POP Toys Store</h1>
+        <p>Encuentra cientos de productos exclusivos y reservas aquí!!!!</p>
+    </header>
+
+   
+    <div class="search-bar">
+        <input type="text" placeholder="Buscar productos..." id="searchInput">
+        <button onclick="buscarProducto()">Buscar</button>
+    </div>
+
+   
+    <main class="main-content">
+        <section id="buscar">
+            <h2>Productos Destacados</h2>
+            <div class="product-grid">
+                
+                <div class="product-card">
+                    <img src="LUffy g5.webp" alt="Funko 1">
+                    <h3>Luffy Gear 5</h3>
+                    <p>$65.00</p>
+                    <button onclick="agregarAlCarrito('Luffy G5', 65.00)">Añadir al carrito</button>
+                </div>
+                <div class="product-card">
+                    <img src="TOBI.jpg" alt="Funko 1">
+                    <h3>Tobi</h3>
+                    <p>$55.00</p>
+                    <button onclick="agregarAlCarrito('TOBI Naruto', 55.00)">Añadir al carrito</button>
+                </div>
+                <div class="product-card">
+                    <img src="Lapras.jpg" alt="Funko 1">
+                    <h3>Lapras</h3>
+                    <p>$75.00</p>
+                    <button onclick="agregarAlCarrito('Lapras', 75.00)">Añadir al carrito</button>
+                </div>
+                <div class="product-card">
+                    <img src="freddy mercuri.webp" alt="Funko 1">
+                    <h3>Freddy mercuri </h3>
+                    <p>$75.00</p>
+                    <button onclick="agregarAlCarrito('Freddy', 75.00)">Añadir al carrito</button>
+                </div>
+                <div class="product-card">
+                    <img src="LOKI.webp" alt="Funko 1">
+                    <h3>Loki Marvel</h3>
+                    <p>$65.00</p>
+                    <button onclick="agregarAlCarrito('LOki', 65.00)">Añadir al carrito</button>
+                </div>
+                <div class="product-card">
+                    <img src="Funko-pop-Spider-Man-funkospace-en-box_1024x1024@2x.webp" alt="Funko 1">
+                    <h3>Spider-Man</h3>
+                    <p>$105.00</p>
+                    <button onclick="agregarAlCarrito('Spider-Man', 105.00)">Añadir al carrito</button>
+                </div>
+                <div class="product-card">
+                    <img src="goku.webp" alt="Funko 1">
+                    <h3>Goku UI</h3>
+                    <p>$85.00</p>
+                    <button onclick="agregarAlCarrito('GOkU UI', 85.00)">Añadir al carrito</button>
+                </div>
+                <div class="product-card">
+                    <img src="funkospace-funko-pop-dragon-ball-super-jiren-with-power-2_1024x1024@2x.webp" alt="Funko 1">
+                    <h3>Jiren DB</h3>
+                    <p>$45.00</p>
+                    <button onclick="agregarAlCarrito('jiren', 45.00)">Añadir al carrito</button>
+                </div>
+                <div class="product-card">
+                    <img src="zoro.webp" alt="Funko 1">
+                    <h3>Zoro Oni</h3>
+                    <p>$55.00</p>
+                    <button onclick="agregarAlCarrito('ZORO ONI', 55.00)">Añadir al carrito</button>
+                </div>
+                <div class="product-card">
+                    <img src="nama.webp" alt="Funko 1">
+                    <h3>Nami SP</h3>
+                    <p>$25.00</p>
+                    <button onclick="agregarAlCarrito('Nami SP', 25.00)">Añadir al carrito</button>
+                </div>
+                <div class="product-card">
+                    <img src="Dragonite.webp" alt="Funko 1">
+                    <h3>Dragonite</h3>
+                    <p>$75.00</p>
+                    <button onclick="agregarAlCarrito('Dragonite', 75.00)">Añadir al carrito</button>
+                </div>
+                <div class="product-card">
+                    <img src="squarte.webp" alt="Funko 1">
+                    <h3>Squirtle</h3>
+                    <p>$55.00</p>
+                    <button onclick="agregarAlCarrito('Squirtle', 55.00)">Añadir al carrito</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="carrito">
+            <div class="carrito">
+                <h2>Carrito de Compras</h2>
+                <ul id="listaCarrito">
+                    
+                </ul>
+                <p>Total: $<span id="totalCarrito">0.00</span></p>
+                <button onclick="pagarCarrito()">Pagar</button>
+            </div>
+        </section>
+        <section id="reservas">
+            <h2>Próximos Lanzamientos</h2>
+            <div class="reserva-grid">
+                <div class="reserva-card">
+                    <img src="images-removebg-preview (2).png" alt="Funko Reserva ">
+                    <h3>Funko Harry Pother</h3>
+                    <p>Disponible 5</p>
+                </div>
+                <div class="reserva-card">
+                    <img src="FUNKO-POP-JIMMY-NEUTRON-350x350-removebg-preview.png" alt="Funko Reserva ">
+                    <h3>Funko Jimmy Neutron</h3>
+                    <p>Disponible 1</p>
+                </div>
+                <div class="reserva-card">
+                    <img src="funko-pop-philip-j-fry-1755-futurama-350x350-removebg-preview.png" alt="Funko Reserva ">
+                    <h3>Funko Philip J</h3>
+                    <p>Disponible 3</p>
+                </div>
+                <div class="reserva-card">
+                    <img src="Avengers_Age_of_Ultron_Hulk_Funko_Pop_jpg_f276ca16-3902-4814-808d-10b41b16b3d1.webp" alt="Funko Reserva ">
+                    <h3>Funko Hulk</h3>
+                    <p>Disponible 2 </p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section id="consultas">
+            <h2>Contacto y Ubicación</h2>
+            <div class="form-container">
+                
+<div class="form-section">
+    <h3>Ubicación</h3>
+    
+    <div class="mapa">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.966943584234!2d-77.042793!3d-12.046374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDAyJzQ2LjkiUyA3N8KwMDInMzQuMSJX!5e0!3m2!1ses!2spe!4v1629999999999!5m2!1ses!2spe"
+            width="100%"
+            height="400"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy">
+        </iframe>
+    </div>
+</div>
+
+                <div class="form-section">
+                    <h3>Contacto</h3>
+                    <form action="#" method="post">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+
+                        <label for="email">Correo electrónico:</label>
+                        <input type="email" id="email" name="email" required>
+
+                        <label for="mensaje">Mensaje:</label>
+                        <textarea id="mensaje" name="mensaje" required></textarea>
+
+                        <button type="submit">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2025 Tienda POP TOYS .</p>
+            <ul class="footer-links">
+                <li><a href="#politica">Política de Privacidad</a></li>
+                <li><a href="#terminos">Términos y Condiciones</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    
+    <script>
+        
+        function toggleMenu() {
+            const navbarMenu = document.getElementById("navbarMenu");
+            navbarMenu.classList.toggle("active");
+        }
+
+        
+        function buscarProducto() {
+            const searchTerm = document.getElementById("searchInput").value;
+            alert(`Buscando: ${searchTerm}`);
+        }
+
+        let carrito = [];
+        let total = 0;
+
+        
+        function agregarAlCarrito(nombre, precio) {
+            carrito.push({ nombre, precio });
+            total += precio;
+            actualizarCarrito();
+        }
+
+        
+        function actualizarCarrito() {
+            const listaCarrito = document.getElementById("listaCarrito");
+            const totalCarrito = document.getElementById("totalCarrito");
+            listaCarrito.innerHTML = "";
+            carrito.forEach((item) => {
+                const li = document.createElement("li");
+                li.textContent = `${item.nombre} - $${item.precio.toFixed(2)}`;
+                listaCarrito.appendChild(li);
+            });
+            totalCarrito.textContent = total.toFixed(2);
+        }
+
+        
+        function pagarCarrito() {
+            if (carrito.length === 0) {
+                alert("El carrito está vacío.");
+            } else {
+                alert(`Gracias por su compra. Total: $${total.toFixed(2)}`);
+                carrito = [];
+                total = 0;
+                actualizarCarrito();
+            }
+        }
+    </script>
+    
+</body>
+</html>
